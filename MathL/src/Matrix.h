@@ -1,61 +1,37 @@
 #pragma once
 
+#include "MatrixBase.h"
+
 namespace MathL {
 
 	template<int R, int C, typename T>
-	class Matrix
+	class Matrix : public MatrixBase<R, C, T>
 	{
-	protected:
-		T m_Data[R][C]{};
-		int m_Rows;
-		int m_Cols;
 	public:
-		Matrix();
-		Matrix(T diag);
+		Matrix() {}
+		Matrix(T diag) : MatrixBase<R, C, T>(diag) {}
 
-		virtual ~Matrix();
+		~Matrix() {}
 	};
 
 
-	template<int R, int C, typename T>
-	Matrix<R, C, T>::Matrix() : m_Rows(R), m_Cols(C)
-	{
-		//m_Data = new T[R * C];
-	}
-
-	template<int R, int C, typename T>
-	Matrix<R, C, T>::Matrix(T diag) : Matrix()
-	{
-		int minDim = R > C ? C : R;
-
-		for (int i = 0; i < minDim; i++)
-		{
-			//m_Data[i + R * i] = diag;
-			m_Data[i][i] = diag;
-		}
-	}
-
-	template<int R, int C, typename T>
-	Matrix<R, C, T>::~Matrix()
-	{
-
-	}
-
+	// ------------------------------------
+	// ---- Template Specialisations ------
+	// ------------------------------------
 	template<int R, int C>
-	class MatrixF : public Matrix<R, C, float>
+	class Matrix<R, C, float> : public MatrixBase<R, C, float>
 	{
 	public:
-		MatrixF() : Matrix<R, C, float>() {}
-		MatrixF(float diag) : Matrix<R, C, float>(diag) {}
+		Matrix() {}
+		Matrix(float diag) : MatrixBase<R, C, float>(diag) {}
 
-		virtual ~MatrixF() {}
+		virtual ~Matrix() {}
 
-
-		static MatrixF<R, C> Identity();
+		static Matrix<R, C, float> Identity();
 	};
 
 	template<int R, int C>
-	MatrixF<R, C> MatrixF<R, C>::Identity()
+	Matrix<R, C, float> Matrix<R, C, float>::Identity()
 	{
 		return { 1.0f };
 	}
