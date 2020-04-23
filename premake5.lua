@@ -20,6 +20,41 @@ project "MathL"
 		"%{prj.name}/src/**.cpp"
 	}
 
+	includedirs {
+		"MathL/src"
+	}
+
+	filter "system:windows" 
+		cppdialect "C++17"
+		staticruntime "On"
+		systemversion "latest"
+	
+	filter "configurations:Debug"
+		defines "DEBUG" 
+		symbols "On"
+
+	filter "configurations:Release"
+		defines "Release"
+		optimize "On"
+
+
+project "MathL.Tests"
+	location "MathL"
+	kind "ConsoleApp"
+	language "C++"
+
+	targetdir ("bin/" .. outputdir .. "/%{prj.name}")	
+	objdir ("build/" .. outputdir .. "/%{prj.name}")
+
+	files {
+		"%{prj.name}/src/**.h",
+		"%{prj.name}/src/**.cpp"
+	}
+
+	includedirs {
+		"MathL/src"
+	}
+
 	filter "system:windows" 
 		cppdialect "C++17"
 		staticruntime "On"
