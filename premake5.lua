@@ -39,7 +39,7 @@ project "MathL"
 
 
 project "MathL.Tests"
-	location "MathL"
+	location "MathL.Tests"
 	kind "ConsoleApp"
 	language "C++"
 
@@ -53,6 +53,10 @@ project "MathL.Tests"
 
 	includedirs {
 		"MathL/src"
+	}
+
+	links {
+		"MathL"
 	}
 
 	filter "system:windows" 
