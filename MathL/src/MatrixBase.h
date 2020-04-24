@@ -27,11 +27,15 @@ namespace MathL {
 
 		virtual MatrixBase<C, R, T> Transpose();
 
+		template<int R2, int C2>
+		MatrixBase<R, C2, T> operator*(MatrixBase<R2, C2, T> other);
+
 
 		friend MatrixBase<C, R, T>;
 	};
 
 	// ----- Constructors -----
+
 	template<int R, int C, typename T>
 	MatrixBase<R, C, T>::MatrixBase(T diag) : MatrixBase()
 	{
@@ -56,6 +60,7 @@ namespace MathL {
 	}
 
 	// ----- Member functions -----
+
 	template<int R, int C, typename T>
 	MatrixBase<C, R, T> MatrixBase<R, C, T>::Transpose()
 	{
@@ -71,6 +76,30 @@ namespace MathL {
 		}
 
 		return copy;
+	}
+
+	// ----- Operators -----
+
+	template<int R, int C, typename T>
+	template<int R2, int C2>
+	inline MatrixBase<R, C2, T> MatrixBase<R, C, T>::operator*(MatrixBase<R2, C2, T> other)
+	{
+		Matrix<R, C2, T> mat;
+
+		for (int i = 0; i < R; i++)
+		{
+			for (int j = 0; j < C2; j++)
+			{
+				T sum = 0;
+				for (int k = 0; k < C; k++)
+				{
+					sum += m_Data[i][k] * other.m_Data[k][j];
+				}
+				mat.m_Data[i][j] = sum;
+			}
+		}
+
+		return mat;
 	}
 
 }
