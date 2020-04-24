@@ -2,6 +2,12 @@
 
 #include <string>
 
+#define ML_MATRIX_COMMON(NAME, R, C, T) \
+NAME() {} \
+NAME(T diag) : MatrixBase<R, C, T>(diag) {} \
+NAME(T data[R][C]) : MatrixBase<R, C, T>(data) {} \
+~NAME() {}
+
 namespace MathL {
 
 	template<int R, int C, typename T>
@@ -12,12 +18,12 @@ namespace MathL {
 		int m_Rows = R;
 		int m_Cols = C;
 	public:
-		MatrixBase() {}//;
-		MatrixBase(T diag);
-		MatrixBase(T data[R][C]);
-
-		virtual ~MatrixBase();
-
+		// ML_MATRIX_COMMON Constructors
+		MatrixBase() {} 
+		MatrixBase(T diag); 
+		MatrixBase(T data[R][C]); 
+		virtual ~MatrixBase(); 
+		// -------------------------
 
 		virtual MatrixBase<C, R, T> Transpose();
 
@@ -25,6 +31,7 @@ namespace MathL {
 		friend MatrixBase<C, R, T>;
 	};
 
+	// ----- Constructors -----
 	template<int R, int C, typename T>
 	MatrixBase<R, C, T>::MatrixBase(T diag) : MatrixBase()
 	{
@@ -48,6 +55,7 @@ namespace MathL {
 	{
 	}
 
+	// ----- Member functions -----
 	template<int R, int C, typename T>
 	MatrixBase<C, R, T> MatrixBase<R, C, T>::Transpose()
 	{

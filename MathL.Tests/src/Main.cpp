@@ -21,9 +21,11 @@ int main()
 	int nums[3][2]{ 1, 2, 3, 4, 5, 6 };
 
 	// TODO: Implement transpose for matrix subclass.
-	MathL::Matrix<3, 2, int> mat(nums);
+	//MathL::Matrix<3, 2, int> mat(nums);
 	//MathL::Matrix<2, 3, int> matT = mat.Transpose();
 
+	MathL::Matrix<3, 2, float> mat(1.0f);
+	MathL::MatrixBase<2, 3, float> mat2 = mat.Transpose();
 
 	std::cin.get();
 	return 0;

@@ -12,14 +12,7 @@ namespace MathL {
 		//int m_Rows = R override;
 		//int m_Cols = C override;
 	public:
-		Matrix() {}
-		Matrix(T diag) : MatrixBase<R, C, T>(diag) {}
-		Matrix(T data[R][C]) : MatrixBase<R, C, T>(data) {}
-
-		~Matrix() {}
-
-
-		friend MatrixBase<R, C, T>;
+		ML_MATRIX_COMMON(Matrix, R, C, T)
 	};
 
 	//template<int R, int C, typename T>
@@ -37,14 +30,7 @@ namespace MathL {
 		static Matrix<R, C, float> Identity();
 
 	public:
-		Matrix() {}
-		Matrix(float diag) : MatrixBase<R, C, float>(diag) {}
-		Matrix(float data[R][C]) : MatrixBase<R, C, float>(data) {}
-
-		~Matrix() {}
-
-
-		MatrixBase<C, R, float> Transpose() { return MatrixBase<R, C, float>.Transpose(); }
+		ML_MATRIX_COMMON(Matrix, R, C, float)
 	};
 
 	template<int R, int C>
