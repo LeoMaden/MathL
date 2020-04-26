@@ -11,6 +11,7 @@ namespace MathL {
 	{
 	public:
 		ML_VECTOR_COMMON(Vector, D, T)
+
 	};
 
 
@@ -26,7 +27,7 @@ namespace MathL {
 		ML_VECTOR_COMMON(Vector, D, float)
 
 		float Magnitude();
-		Vector<D, 3> UnitVector();
+		Vector<D, float> UnitVector();
 	};
 	
 	template<int D>
@@ -41,6 +42,12 @@ namespace MathL {
 
 		return std::sqrt(mag);
 		// TODO: Specialised func for Vec<3, float>
+	}
+
+	template<int D>
+	inline Vector<D, float> Vector<D, float>::UnitVector()
+	{
+		return Vector<D, float>();
 	}
 
 	// ----- 3 FLOAT -----

@@ -25,6 +25,8 @@ namespace MathL {
 		virtual ~MatrixBase(); 
 		// -------------------------
 
+		virtual void SetElement(int row, int col, T value);
+		virtual T GetElement(int row, int col) const;
 		virtual MatrixBase<C, R, T> Transpose();
 
 		template<int R2, int C2>
@@ -60,6 +62,18 @@ namespace MathL {
 	}
 
 	// ----- Member functions -----
+
+	template<int R, int C, typename T>
+	inline void MatrixBase<R, C, T>::SetElement(int row, int col, T value)
+	{
+		m_Data[row][col] = value;
+	}
+
+	template<int R, int C, typename T>
+	inline T MatrixBase<R, C, T>::GetElement(int row, int col) const
+	{
+		return m_Data[row][col];
+	}
 
 	template<int R, int C, typename T>
 	MatrixBase<C, R, T> MatrixBase<R, C, T>::Transpose()
