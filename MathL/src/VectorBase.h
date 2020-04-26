@@ -1,5 +1,10 @@
 #pragma once
 
+#define ML_VECTOR_COMMON(NAME, D, T) \
+NAME() : VectorBase<D, T>() {} \
+virtual ~NAME() {}
+
+
 namespace MathL {
 
 	template<int D, typename T>
