@@ -21,6 +21,7 @@ namespace MathL {
 		// ML_MATRIX_COMMON Constructors
 		MatrixBase() {} 
 		MatrixBase(T diag); 
+		MatrixBase(const T* data);
 		MatrixBase(T data[R][C]); 
 		virtual ~MatrixBase(); 
 		// -------------------------
@@ -48,6 +49,12 @@ namespace MathL {
 			//m_Data[i + R * i] = diag;
 			m_Data[i][i] = diag;
 		}
+	}
+
+	template<int R, int C, typename T>
+	inline MatrixBase<R, C, T>::MatrixBase(const T* data)
+	{
+		memcpy(m_Data, data, R * C * sizeof(T));
 	}
 
 	template<int R, int C, typename T>

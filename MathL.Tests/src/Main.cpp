@@ -15,13 +15,3 @@ int main(int argc, char** argv)
 
     return status;
 }
-
-TEST(gtestTest, Works)
-{
-    ASSERT_TRUE(false, "gtest doesnt work!");
-}
-
-TEST(gtestTest, Other)
-{
-    ASSERT_TRUE(true, "gtest doesnt work!");
-}
