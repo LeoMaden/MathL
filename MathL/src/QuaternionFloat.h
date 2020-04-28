@@ -13,9 +13,12 @@ namespace MathL {
 		union 
 		{
 			struct { float x, y, z, w; };
-			alignas(32) float data[4];
+			struct { float a, b, c, d; };
+
+			#if ML_USE_SIMD == 1
+				alignas(32) float data[4];
+			#endif
 		};
-		//float x, y, z, w;
 
 		// ----- Basic Constructors -----
 		Quaternion();
@@ -28,24 +31,24 @@ namespace MathL {
 		// ----- Access -----
 		float ScalarPart();
 		Vector<3, float> VectorPart();
-		float operator[](int i);
+		float& operator[](int i);
 
 		// ----- Math operators -----
 		float Norm() const;
 		Quaternion<float> Conjugate() const;
 		Quaternion<float> Reciprocal() const;
 
-		// ----- Unary Scalar Operators -----
-		//Quaternion<float>& operator+=(float other);
-		//Quaternion<float>& operator-=(float other);
-		//Quaternion<float>& operator*=(float other);
-		//Quaternion<float>& operator/=(float other);
-
 		// ----- Unary Quaternion Operators -----
 		Quaternion<float>& operator+=(const Quaternion<float>& other);
 		Quaternion<float>& operator-=(const Quaternion<float>& other);
 		Quaternion<float>& operator*=(const Quaternion<float>& other);
 		Quaternion<float>& operator/=(const Quaternion<float>& other);
+
+		// ----- Unary Scalar Operators -----
+		Quaternion<float>& operator+=(float other);
+		Quaternion<float>& operator-=(float other);
+		Quaternion<float>& operator*=(float other);
+		Quaternion<float>& operator/=(float other);
 	};
 
 	// ----- Binary Quaternion Operators -----
@@ -53,6 +56,12 @@ namespace MathL {
 	Quaternion<float> operator-(const Quaternion<float>& left, const Quaternion<float>& right);
 	Quaternion<float> operator*(const Quaternion<float>& left, const Quaternion<float>& right);
 	Quaternion<float> operator/(const Quaternion<float>& left, const Quaternion<float>& right);
+
+	// ----- Binary Quaternion Operators -----
+	Quaternion<float> operator+(const Quaternion<float>& left, float value);
+	Quaternion<float> operator-(const Quaternion<float>& left, float value);
+	Quaternion<float> operator*(const Quaternion<float>& left, float value);
+	Quaternion<float> operator/(const Quaternion<float>& left, float value);
 
 } // namespace MathL
 
