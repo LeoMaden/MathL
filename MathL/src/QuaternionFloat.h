@@ -15,9 +15,7 @@ namespace MathL {
 			struct { float x, y, z, w; };
 			struct { float a, b, c, d; };
 
-			#if ML_USE_SIMD == 1
-				alignas(32) float data[4];
-			#endif
+			alignas(32) float data[4];
 		};
 
 		// ----- Basic Constructors -----

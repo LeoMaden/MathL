@@ -1,5 +1,7 @@
 #include <gtest/gtest.h>
 
+#include <immintrin.h>
+
 #include "QuaternionFloat.h"
 
 namespace MathL {
@@ -130,6 +132,34 @@ namespace Tests {
 		EXPECT_FLOAT_EQ(result.y, 0.0f);
 		EXPECT_FLOAT_EQ(result.z, 0.0f);
 		EXPECT_FLOAT_EQ(result.w, 0.0f);
+	}
+
+
+	// ----- SIMD Operations -----
+	TEST(QuaternionFloatTest, SimdAddWorks)
+	{
+		Quaternion<float> a(1.0f, 2.0f, 3.0f, 4.0f);
+		Quaternion<float> b(1.0f, 1.0f, 1.0f, 1.0f);
+
+		Quaternion<float> result = QuaternionAdd<float, true>::Compute(a, b);
+
+		EXPECT_FLOAT_EQ(result.x, 2.0f);
+		EXPECT_FLOAT_EQ(result.y, 3.0f);
+		EXPECT_FLOAT_EQ(result.z, 4.0f);
+		EXPECT_FLOAT_EQ(result.w, 5.0f); 
+	}
+
+	TEST(QuaternionFloatTest, SimdSubWorks)
+	{
+		Quaternion<float> a(5.0f, 6.0f, 7.0f, 8.0f);
+		Quaternion<float> b(3.0f, 4.0f, 1.0f, 2.0f);
+
+		Quaternion<float> result = QuaternionSub<float, true>::Compute(a, b);
+
+		EXPECT_FLOAT_EQ(result.x, 2.0f);
+		EXPECT_FLOAT_EQ(result.y, 2.0f);
+		EXPECT_FLOAT_EQ(result.z, 6.0f);
+		EXPECT_FLOAT_EQ(result.w, 6.0f);
 	}
 
 }

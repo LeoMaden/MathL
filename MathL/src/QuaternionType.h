@@ -1,7 +1,5 @@
 #pragma once
 
-#include "UseSimd.h"
-
 namespace MathL {
 
 	template<typename T>

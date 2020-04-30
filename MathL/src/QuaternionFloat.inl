@@ -1,6 +1,9 @@
 #pragma once
 
 #include "QuaternionFloat.h"
+#include <immintrin.h>
+
+#define ML_USE_SIMD false
 
 namespace MathL {
 
@@ -28,6 +31,33 @@ namespace MathL {
 		}
 	};
 
+	template<>
+	struct QuaternionAdd<float, true>
+	{
+		inline static Quaternion<float> Compute(const Quaternion<float>& left, const Quaternion<float>& right)
+		{
+			__m128 ldata = _mm_load_ps(left.data);
+			__m128 rdata = _mm_load_ps(right.data);
+
+			__m128 result = _mm_add_ps(ldata, rdata);
+			float* floats = result.m128_f32;
+
+			return Quaternion<float>(floats[0], floats[1], floats[2], floats[3]);
+		}
+
+		inline static Quaternion<float> Compute(const Quaternion<float>& left, float value)
+		{
+			__m128 ldata = _mm_load_ps(left.data);
+			__m128 constant = _mm_set_ps(value, value, value, value);
+
+			__m128 result = _mm_add_ps(ldata, constant);
+			float* floats = result.m128_f32;
+
+			return Quaternion<float>(floats[0], floats[1], floats[2], floats[3]);
+		}
+	};
+
+
 	template<bool UseSimd>
 	struct QuaternionSub<float, UseSimd>
 	{
@@ -51,6 +81,33 @@ namespace MathL {
 				);
 		}
 	};
+
+	template<>
+	struct QuaternionSub<float, true>
+	{
+		inline static Quaternion<float> Compute(const Quaternion<float>& left, const Quaternion<float>& right)
+		{
+			__m128 ldata = _mm_load_ps(left.data);
+			__m128 rdata = _mm_load_ps(right.data);
+
+			__m128 result = _mm_sub_ps(ldata, rdata);
+			float* floats = result.m128_f32;
+
+			return Quaternion<float>(floats[0], floats[1], floats[2], floats[3]);
+		}
+
+		inline static Quaternion<float> Compute(const Quaternion<float>& left, float value)
+		{
+			__m128 ldata = _mm_load_ps(left.data);
+			__m128 constant = _mm_set_ps(value, value, value, value);
+
+			__m128 result = _mm_sub_ps(ldata, constant);
+			float* floats = result.m128_f32;
+
+			return Quaternion<float>(floats[0], floats[1], floats[2], floats[3]);
+		}
+	};
+
 
 	template<bool UseSimd>
 	struct QuaternionMul<float, UseSimd>
@@ -85,6 +142,48 @@ namespace MathL {
 				);
 		}
 	};
+
+	/*template<>
+	struct QuaternionMul<float, true>
+	{
+		inline static Quaternion<float> Compute(const Quaternion<float>& left, const Quaternion<float>& right)
+		{
+			float x1 = left.x;
+			float y1 = left.y;
+			float z1 = left.z;
+			float w1 = left.w;
+
+			float x2 = right.x;
+			float y2 = right.y;
+			float z2 = right.z;
+			float w2 = right.w;
+
+			__m256 xyMul1 = _mm256_set_ps(x1, x1, y1, y1, z1, z1, w1, w1);
+			__m256 xyMul2 = _mm256_set_ps(x2, y2, y2, x2, z2, w2, w2, z2);
+
+			__m256 zwMul1 = _mm256_set_ps(x1, x1, y1, y1, z1, z1, w1, w1);
+			__m256 zwMul2 = _mm256_set_ps(x2, w2, w2, z2, x2, y2, y2, x2);
+
+			__m256 xyMuls = _mm256_mul_ps(xyMul1, xyMul2);
+			__m256 zwMuls = _mm256_mul_ps(zwMul1, zwMul2);
+
+			return Quaternion<float>();
+			
+
+		}
+
+		inline static Quaternion<float> Compute(const Quaternion<float>& left, float value)
+		{
+			__m128 ldata = _mm_load_ps(left.data);
+			__m128 constant = _mm_set_ps(value, value, value, value);
+
+			__m128 result = _mm_add_ps(ldata, constant);
+			float* floats = result.m128_f32;
+
+			return Quaternion<float>(floats[0], floats[1], floats[2], floats[3]);
+		}
+	};*/
+
 
 	template<bool UseSimd>
 	struct QuaternionDiv<float, UseSimd>
