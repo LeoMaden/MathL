@@ -1,7 +1,7 @@
 #pragma once
 
 #include "QuaternionType.h"
-#include "Vector.h"
+#include "VectorType.h"
 
 namespace MathL {
 
@@ -15,7 +15,7 @@ namespace MathL {
 			struct { float x, y, z, w; };
 			struct { float a, b, c, d; };
 
-			alignas(32) float data[4];
+			/*alignas(32)*/ float data[4];
 		};
 
 		// ----- Basic Constructors -----
