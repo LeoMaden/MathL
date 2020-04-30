@@ -10,3 +10,5 @@ namespace MathL {
 	};
 
 }
+
+#include "VectorType.inl"
