@@ -1,4 +1,5 @@
 #pragma once
+
 #include "VectorType.h"
 
 namespace MathL {
@@ -53,3 +54,5 @@ namespace MathL {
 	//Vector<3, float> operator/(const Vector<3, float>& left, float value);
 
 }
+
+#include "Vector3Float.inl"
