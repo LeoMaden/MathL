@@ -1,6 +1,7 @@
 #pragma once
 
 #include "VectorType.h"
+#include "Storage.h"
 
 namespace MathL {
 
@@ -14,7 +15,7 @@ namespace MathL {
 			struct { T x, y, z; };
 			struct { T a, b, c; };
 
-			/*alignas(32)*/ T data[3] ;
+			typename Storage<3, T, ML_USE_ALIGNED>::Type data;
 		};
 
 		// ----- Basic Constructors -----
@@ -24,42 +25,42 @@ namespace MathL {
 		// ----- Copy/Conversion Constructor -----
 		Vector(const Vector<3, T>& other);
 
-		//// ----- Math Operations -----
-		//Vector<3, T> Cross(const Vector<3, T>& other);
-		//T Dot(const Vector<3, T>& other);
+		// ----- Math Operations -----
+		Vector<3, T> Cross(const Vector<3, T>& other);
+		T Dot(const Vector<3, T>& other);
 
-		//// ----- Unary Vector Operators -----
-		//Vector<3, T>& operator+=(const Vector<3, T>& other);
-		//Vector<3, T>& operator-=(const Vector<3, T>& other);
-		//Vector<3, T>& operator*=(const Vector<3, T>& other);
-		//Vector<3, T>& operator/=(const Vector<3, T>& other);
+		// ----- Unary Vector Operators -----
+		Vector<3, T>& operator+=(const Vector<3, T>& other);
+		Vector<3, T>& operator-=(const Vector<3, T>& other);
+		Vector<3, T>& operator*=(const Vector<3, T>& other);
+		Vector<3, T>& operator/=(const Vector<3, T>& other);
 
-		//// ----- Unary Scalar Operators -----
-		//Vector<3, T>& operator+=(T other);
-		//Vector<3, T>& operator-=(T other);
-		//Vector<3, T>& operator*=(T other);
-		//Vector<3, T>& operator/=(T other);
+		// ----- Unary Scalar Operators -----
+		Vector<3, T>& operator+=(T other);
+		Vector<3, T>& operator-=(T other);
+		Vector<3, T>& operator*=(T other);
+		Vector<3, T>& operator/=(T other);
 	};
 
-	//// ----- Binary Vector Operators -----
-	//template<typename T>
-	//Vector<3, T> operator+(const Vector<3, T>& left, const Vector<3, T>& right);
-	//template<typename T>
-	//Vector<3, T> operator-(const Vector<3, T>& left, const Vector<3, T>& right);
-	//template<typename T>
-	//Vector<3, T> operator*(const Vector<3, T>& left, const Vector<3, T>& right);
-	//template<typename T>
-	//Vector<3, T> operator/(const Vector<3, T>& left, const Vector<3, T>& right);
+	// ----- Binary Vector Operators -----
+	template<typename T>
+	Vector<3, T> operator+(const Vector<3, T>& left, const Vector<3, T>& right);
+	template<typename T>
+	Vector<3, T> operator-(const Vector<3, T>& left, const Vector<3, T>& right);
+	template<typename T>
+	Vector<3, T> operator*(const Vector<3, T>& left, const Vector<3, T>& right);
+	template<typename T>
+	Vector<3, T> operator/(const Vector<3, T>& left, const Vector<3, T>& right);
 
-	//// ----- Binary Scalar Operators -----
-	//template<typename T>
-	//Vector<3, T> operator+(const Vector<3, T>& left, T value);
-	//template<typename T>
-	//Vector<3, T> operator-(const Vector<3, T>& left, T value);
-	//template<typename T>
-	//Vector<3, T> operator*(const Vector<3, T>& left, T value);
-	//template<typename T>
-	//Vector<3, T> operator/(const Vector<3, T>& left, T value);
+	// ----- Binary Scalar Operators -----
+	template<typename T>
+	Vector<3, T> operator+(const Vector<3, T>& left, T value);
+	template<typename T>
+	Vector<3, T> operator-(const Vector<3, T>& left, T value);
+	template<typename T>
+	Vector<3, T> operator*(const Vector<3, T>& left, T value);
+	template<typename T>
+	Vector<3, T> operator/(const Vector<3, T>& left, T value);
 
 }
 
