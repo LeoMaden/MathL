@@ -1,6 +1,7 @@
 #pragma once
 
 #include "VectorType.h"
+#include "Storage.h"
 
 namespace MathL {
 
@@ -14,7 +15,7 @@ namespace MathL {
 			struct { T x, y, z, w; };
 			struct { T a, b, c, d; };
 
-			/*alignas(32)*/ T data[4];
+			typename Storage<4, T, ML_USE_ALIGNED>::Type data;
 		};
 
 		// ----- Basic Constructors -----

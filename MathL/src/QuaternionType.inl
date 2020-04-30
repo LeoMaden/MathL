@@ -3,8 +3,6 @@
 #include "QuaternionType.h"
 #include "Vector3Type.h"
 
-#define ML_USE_SIMD false
-
 namespace MathL {
 
 	template<typename T, bool UseSimd>
@@ -352,5 +350,6 @@ namespace MathL {
 	}
 
 }
-
-#include "QuaternionSimd.inl"
+#if ML_USE_SIMD == 1
+	#include "QuaternionSimd.inl"
+#endif
