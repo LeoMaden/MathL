@@ -1,7 +1,7 @@
 #pragma once
 
 #include "QuaternionType.h"
-#include "Vector3Float.h"
+#include "Vector3Type.h"
 
 #define ML_USE_SIMD false
 

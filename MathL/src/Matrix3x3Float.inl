@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Matrix3x3Float.h"
-#include "Vector3Float.h"
+#include "Vector3Type.h"
 
 namespace MathL {
 
