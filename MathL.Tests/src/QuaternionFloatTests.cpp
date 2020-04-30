@@ -2,7 +2,7 @@
 
 #include <immintrin.h>
 
-#include "QuaternionFloat.h"
+#include "QuaternionType.h"
 
 namespace MathL {
 namespace Tests {
