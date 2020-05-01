@@ -151,6 +151,22 @@ namespace MathL {
 	}
 
 
+	// ----- Access -----
+	template<typename T>
+	inline T Vector<3, T>::operator[](int i)
+	{
+		switch (i)
+		{
+		case 0:
+			return x;
+		case 1:
+			return y;
+		case 2:
+			return z;
+		}
+	}
+
+
 	// ----- Unary Vector Operators -----
 	template<typename T>
 	inline Vector<3, T>& Vector<3, T>::operator+=(const Vector<3, T>& other)

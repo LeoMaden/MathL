@@ -140,6 +140,24 @@ namespace MathL {
 	}
 
 
+	// ----- Access -----
+	template<typename T>
+	inline T Vector<4, T>::operator[](int i)
+	{
+		switch (i)
+		{
+		case 0:
+			return x;
+		case 1:
+			return y;
+		case 2:
+			return z;
+		case 3:
+			return w;
+		}
+	}
+
+
 	// ----- Unary Vector Operators -----
 	template<typename T>
 	inline Vector<4, T>& Vector<4, T>::operator+=(const Vector<4, T>& other)

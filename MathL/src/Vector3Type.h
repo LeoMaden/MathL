@@ -29,6 +29,9 @@ namespace MathL {
 		Vector<3, T> Cross(const Vector<3, T>& other);
 		T Dot(const Vector<3, T>& other);
 
+		// ----- Access -----
+		T operator[](int i);
+
 		// ----- Unary Vector Operators -----
 		Vector<3, T>& operator+=(const Vector<3, T>& other);
 		Vector<3, T>& operator-=(const Vector<3, T>& other);
