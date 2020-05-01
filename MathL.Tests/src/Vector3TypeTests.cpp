@@ -113,7 +113,145 @@ namespace Tests {
 	}
 
 
-
 	// ----- Unary Scalar Operators -----
+	TEST(Vector3TypeTest, OperatorScalarPlusEqualsWorks)
+	{
+		Vector<3, float> a(1.0f, 4.0f, 2.0f);
+
+		a += 2.0f;
+
+		EXPECT_FLOAT_EQ(a.x, 3.0f);
+		EXPECT_FLOAT_EQ(a.y, 6.0f);
+		EXPECT_FLOAT_EQ(a.z, 4.0f);
+	}
+
+	TEST(Vector3TypeTest, OperatorScalarMinusEqualsWorks)
+	{
+		Vector<3, float> a(1.0f, 4.0f, 2.0f);
+
+		a -= 2.0f;
+
+		EXPECT_FLOAT_EQ(a.x, -1.0f);
+		EXPECT_FLOAT_EQ(a.y, 2.0f);
+		EXPECT_FLOAT_EQ(a.z, 0.0f);
+	}
+
+	TEST(Vector3TypeTest, OperatorScalarTimesEqualsWorks)
+	{
+		Vector<3, float> a(1.0f, 4.0f, 2.0f);
+
+		a *= 2.0f;
+
+		EXPECT_FLOAT_EQ(a.x, 2.0f);
+		EXPECT_FLOAT_EQ(a.y, 8.0f);
+		EXPECT_FLOAT_EQ(a.z, 4.0f);
+	}
+
+	TEST(Vector3TypeTest, OperatorScalarDivideEqualsWorks)
+	{
+		Vector<3, float> a(1.0f, 4.0f, 2.0f);
+
+		a /= 2.0f;
+
+		EXPECT_FLOAT_EQ(a.x, 0.5f);
+		EXPECT_FLOAT_EQ(a.y, 2.0f);
+		EXPECT_FLOAT_EQ(a.z, 1.0f);
+	}
+
+
+	// ----- Binary Vector Operators -----
+	TEST(Vector3TypeTest, OperatorPlusWorks)
+	{
+		Vector<3, float> a(1.0f, 4.0f, 2.0f);
+		Vector<3, float> b(3.0f, 1.0f, 1.0f);
+
+		Vector<3, float> result = a + b;
+
+		EXPECT_FLOAT_EQ(result.x, 4.0f);
+		EXPECT_FLOAT_EQ(result.y, 5.0f);
+		EXPECT_FLOAT_EQ(result.z, 3.0f);
+	}
+
+	TEST(Vector3TypeTest, OperatorMinusWorks)
+	{
+		Vector<3, float> a(1.0f, 4.0f, 2.0f);
+		Vector<3, float> b(3.0f, 1.0f, 1.0f);
+
+		Vector<3, float> result = a - b;
+
+		EXPECT_FLOAT_EQ(result.x, -2.0f);
+		EXPECT_FLOAT_EQ(result.y, 3.0f);
+		EXPECT_FLOAT_EQ(result.z, 1.0f);
+	}
+
+	TEST(Vector3TypeTest, OperatorTimesWorks)
+	{
+		Vector<3, float> a(1.0f, 4.0f, 2.0f);
+		Vector<3, float> b(3.0f, 1.0f, 1.0f);
+
+		Vector<3, float> result = a * b;
+
+		EXPECT_FLOAT_EQ(result.x, 3.0f);
+		EXPECT_FLOAT_EQ(result.y, 4.0f);
+		EXPECT_FLOAT_EQ(result.z, 2.0f);
+	}
+
+	TEST(Vector3TypeTest, OperatorDivideWorks)
+	{
+		Vector<3, float> a(4.0f, 1.0f, 6.0f);
+		Vector<3, float> b(2.0f, 4.0f, 3.0f);
+
+		Vector<3, float> result = a / b;
+
+		EXPECT_FLOAT_EQ(result.x, 2.0f);
+		EXPECT_FLOAT_EQ(result.y, 0.25f);
+		EXPECT_FLOAT_EQ(result.z, 2.0f);
+	}
+
+
+	// ----- Binary Scalar Operators -----
+	TEST(Vector3TypeTest, OperatorScalarPlusWorks)
+	{
+		Vector<3, float> a(1.0f, 4.0f, 2.0f);
+
+		Vector<3, float> result = a + 2.0f;
+
+		EXPECT_FLOAT_EQ(result.x, 3.0f);
+		EXPECT_FLOAT_EQ(result.y, 6.0f);
+		EXPECT_FLOAT_EQ(result.z, 4.0f);
+	}
+
+	TEST(Vector3TypeTest, OperatorScalarMinusWorks)
+	{
+		Vector<3, float> a(1.0f, 4.0f, 2.0f);
+
+		Vector<3, float> result = a - 2.0f;
+
+		EXPECT_FLOAT_EQ(result.x, -1.0f);
+		EXPECT_FLOAT_EQ(result.y, 2.0f);
+		EXPECT_FLOAT_EQ(result.z, 0.0f);
+	}
+
+	TEST(Vector3TypeTest, OperatorScalarTimesWorks)
+	{
+		Vector<3, float> a(1.0f, 4.0f, 2.0f);
+
+		Vector<3, float> result = a * 2.0f;
+
+		EXPECT_FLOAT_EQ(result.x, 2.0f);
+		EXPECT_FLOAT_EQ(result.y, 8.0f);
+		EXPECT_FLOAT_EQ(result.z, 4.0f);
+	}
+
+	TEST(Vector3TypeTest, OperatorScalarDivideWorks)
+	{
+		Vector<3, float> a(1.0f, 4.0f, 2.0f);
+
+		Vector<3, float> result = a / 2.0f;
+
+		EXPECT_FLOAT_EQ(result.x, 0.5f);
+		EXPECT_FLOAT_EQ(result.y, 2.0f);
+		EXPECT_FLOAT_EQ(result.z, 1.0f);
+	}
 }
 }

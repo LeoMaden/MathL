@@ -155,25 +155,25 @@ namespace MathL {
 	template<typename T>
 	inline Vector<3, T>& Vector<3, T>::operator+=(const Vector<3, T>& other)
 	{
-		return *this = VectorAdd<3, T, ML_USE_SIMD>::Compute(*this, other);
+		return (*this = VectorAdd<3, T, ML_USE_SIMD>::Compute(*this, other));
 	}
 
 	template<typename T>
 	inline Vector<3, T>& Vector<3, T>::operator-=(const Vector<3, T>& other)
 	{
-		return *this = VectorSub<3, T, ML_USE_SIMD>::Compute(*this, other);
+		return (*this = VectorSub<3, T, ML_USE_SIMD>::Compute(*this, other));
 	}
 
 	template<typename T>
 	inline Vector<3, T>& Vector<3, T>::operator*=(const Vector<3, T>& other)
 	{
-		return *this = VectorMul<3, T, ML_USE_SIMD>::Compute(*this, other);
+		return (*this = VectorMul<3, T, ML_USE_SIMD>::Compute(*this, other));
 	}
 
 	template<typename T>
 	inline Vector<3, T>& Vector<3, T>::operator/=(const Vector<3, T>& other)
 	{
-		return *this = VectorDiv<3, T, ML_USE_SIMD>::Compute(*this, other);
+		return (*this = VectorDiv<3, T, ML_USE_SIMD>::Compute(*this, other));
 	}
 
 
@@ -181,25 +181,25 @@ namespace MathL {
 	template<typename T>
 	inline Vector<3, T>& Vector<3, T>::operator+=(T other)
 	{
-		return this* = VectorAdd<3, T, ML_USE_SIMD>::Compute(*this, other);
+		return (*this = VectorAdd<3, T, ML_USE_SIMD>::Compute(*this, other));
 	}
 
 	template<typename T>
 	inline Vector<3, T>& Vector<3, T>::operator-=(T other)
 	{
-		return this* = VectorSub<3, T, ML_USE_SIMD>::Compute(*this, other);
+		return (*this = VectorSub<3, T, ML_USE_SIMD>::Compute(*this, other));
 	}
 
 	template<typename T>
 	inline Vector<3, T>& Vector<3, T>::operator*=(T other)
 	{
-		return this* = VectorMul<3, T, ML_USE_SIMD>::Compute(*this, other);
+		return (*this = VectorMul<3, T, ML_USE_SIMD>::Compute(*this, other));
 	}
 
 	template<typename T>
 	inline Vector<3, T>& Vector<3, T>::operator/=(T other)
 	{
-		return this* = VectorDiv<3, T, ML_USE_SIMD>::Compute(*this, other);
+		return (*this = VectorDiv<3, T, ML_USE_SIMD>::Compute(*this, other));
 	}
 
 
