@@ -142,7 +142,7 @@ namespace MathL {
 
 	// ----- Access -----
 	template<typename T>
-	inline T Vector<4, T>::operator[](int i)
+	inline T& Vector<4, T>::operator[](int i)
 	{
 		switch (i)
 		{
@@ -155,6 +155,24 @@ namespace MathL {
 		case 3:
 			return w;
 		}
+		throw std::out_of_range("Index out of range");
+	}
+
+	template<typename T>
+	inline const T& Vector<4, T>::operator[](int i) const
+	{
+		switch (i)
+		{
+		case 0:
+			return x;
+		case 1:
+			return y;
+		case 2:
+			return z;
+		case 3:
+			return w;
+		}
+		throw std::out_of_range("Index out of range");
 	}
 
 

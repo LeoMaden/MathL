@@ -29,7 +29,8 @@ namespace MathL {
 		T Dot(const Vector<4, T>& other);
 
 		// ----- Access -----
-		T operator[](int i);
+		T& operator[](int i);
+		const T& operator[](int i) const;
 
 		// ----- Unary Vector Operators -----
 		Vector<4, T>& operator+=(const Vector<4, T>& other);
