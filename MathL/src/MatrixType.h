@@ -9,3 +9,5 @@ namespace MathL {
 	};
 
 }
+
+#include "MatrixType.inl"
